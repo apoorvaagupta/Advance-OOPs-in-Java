@@ -1,38 +1,43 @@
 package me.apoorvaagupta;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.*;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+import static org.junit.Assert.assertEquals;
+
+public class AppTest {
+
+    Integer v1 = 21;
+    Integer v2 = 34;
+
+    AdditionProcessor<Integer> api = new AdditionProcessor<Integer>(Integer.class);
+
+    @Test
+    public void testAddProcessorforInteger() {
+        assertEquals(new Integer(55), api.process(v1, v2));
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    AdditionProcessor<String> aps = new AdditionProcessor<String>(String.class);
+
+    @Test
+    public void testAddProcessorforString() {
+        assertEquals(("abcdef"), aps.process("abc", "def"));
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    ReversalProcessor<Integer> rpi = new ReversalProcessor<Integer>(Integer.class);
+
+    @Test
+    public void testRevProcessorforInteger() {
+        assertEquals(new Integer(12), rpi.process(v1));
     }
+
+    ReversalProcessor<String> rps = new ReversalProcessor<String>(String.class);
+
+    @Test
+    public void testRevProcessorforString() {
+        assertEquals(("cba"), rps.process("abc"));
+    }
+
+
+
+
 }
